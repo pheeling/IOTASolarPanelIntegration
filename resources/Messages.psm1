@@ -4,13 +4,15 @@ function Get-Messages(){
 
 class Messages {
 
+    $hostname = "api.lb-0.testnet.chrysalis2.com"
+
     getMessage($identifier){
 
-        
     }
 
-    sendMessage($message){
-
+    [PSCustomObject]sendMessage($message,$apiCommand){
+        $url = "https://$($this.hostname)/$apiCommand"
+        return Invoke-WebRequest -Uri $url -Method "POST"
     }
 
     validateIdenxationKey($idenxationKey){
